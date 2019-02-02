@@ -43,10 +43,33 @@ def setup_gui(root):
     # Do some setup stuff
     print('stub')
 
+def update_character_previews(a, b, c):
+    global p1_char_label
+    global p2_char_label
+
+    # Remove our widgets from the grid
+    p1_char_label.grid_forget()
+    p2_char_label.grid_forget()
+
+    # Recreate them I guess, because I don't really know how to get them to persist after root.update()
+    load = Image.open(os.path.join(IMG_PATH, 'config_1', 'stock_icons', icons_dict[p1_char.get()]))
+    photo = ImageTk.PhotoImage(load)
+    p1_char_label = tk.Label(header_frame, image=photo)
+    p1_char_label.image = photo
+    p1_char_label.grid(row=3, column=0)
+
+    load = Image.open(os.path.join(IMG_PATH, 'config_1', 'stock_icons', icons_dict[p2_char.get()]))
+    photo = ImageTk.PhotoImage(load)
+    p2_char_label = tk.Label(header_frame, image=photo)
+    p2_char_label.image = photo
+    p2_char_label.grid(row=3, column=2)
+
+    # Force update
+    # root.update()
+
 def potential_change(obj):
     update_button.config(fg='red')
     root.update()
-    print('maybe changed!')
 
 def bind_changed(widgets):
     for i in range(len(widgets)):
@@ -223,23 +246,65 @@ p2_chars_dict = {
         "Zelda": "zelda_R.png"
         }
 
+icons_dict = {
+        "Bowser": "BowserOriginal.png",
+        "Donkey Kong": "DonkeyKongOriginal.png",
+        "Dr. Mario": "DrMarioBlack.png",
+        "Falco": "FalcoOriginal.png",
+        "Falcon": "CaptainFalconOriginal.png",
+        "Fox": "FoxOriginal.png",
+        "Ganon": "GanondorfOriginal.png",
+        "Mr. Game and Watch": "Game & Watch Original.png",
+        "Ice Climbers": "IceClimbersOriginal.png",
+        "Kirby": "KirbyOriginal.png",
+        "Link": "LinkGreen.png",
+        "Luigi": "LuigiOriginal.png",
+        "Mario": "MarioOriginal.png",
+        "Marth": "MarthOriginal.png",
+        "Mewtwo": "MewtwoOriginal.png",
+        "Ness": "NessOriginal.png",
+        "Peach": "PeachOriginal.png",
+        "Pichu": "PichuOriginal.png",
+        "Pikachu": "PikachuOriginal.png",
+        "Puff": "JigglyPuffOriginal.png",
+        "Roy": "RoyOriginal.png",
+        "Samus": "SamusOriginal.png",
+        "Sheik": "SheikOriginal.png",
+        "Young Link": "YoungLinkGreen.png",
+        "Yoshi": "YoshiOriginal.png",
+        "Zelda": "ZeldaOriginal.png"
+        }
 
 
 p1_chars = list(p1_chars_dict.keys())
 
 p1_char = tk.StringVar(header_frame)
 p1_char.set(p1_chars[0])
+p1_char.trace('w', update_character_previews)
+# TODO add trace here and on p2
 
-# May need to be tk.apply?
 p1_char_select = tk.OptionMenu(header_frame, p1_char, *tuple(p1_chars))
 
 p2_chars = list(p2_chars_dict.keys())
 
+
 p2_char = tk.StringVar(header_frame)
 p2_char.set(p2_chars[0])
+p2_char.trace('w', update_character_previews)
 
-# May need to be tk.apply?
+
 p2_char_select = tk.OptionMenu(header_frame, p2_char, *tuple(p2_chars))
+
+
+
+# Let's also have like, an image preview ready for this ish
+load = Image.open(os.path.join(IMG_PATH, 'config_1', 'stock_icons', icons_dict[p1_chars[0]]))
+photo = ImageTk.PhotoImage(load)
+p1_char_label = tk.Label(header_frame, image=photo)
+p1_char_label.image = photo
+
+p2_char_label = tk.Label(header_frame, image=photo)
+p2_char_label.image = photo
 
 
 # Spinboxes!
@@ -277,6 +342,11 @@ p2_tag.grid(row=1, column=2)
 p1_char_select.grid(row=2, column=0)
 # p2_games.grid(row=2, column=2)
 p2_char_select.grid(row=2, column=2)
+
+
+p1_char_label.grid(row=3, column=0)
+p2_char_label.grid(row=3, column=2)
+
 
 update_button.grid(row=3, column=1)
 
