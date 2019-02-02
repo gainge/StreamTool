@@ -171,16 +171,19 @@ header_frame.pack()
 
 # Populate our grid with items #
 # ---------------------------- #
-# Add our player tag labels
-p1_label = tk.Label(header_frame, text='Player 1 Tag', fg='white', bg='#002255')
-p2_label = tk.Label(header_frame, text='Player 2 Tag', fg='white', bg='#002255')
+font_large = Font(family='Helvetica', size=23)
+font_medium = Font(family='Helvetica', size=20)
 
-vs_label = tk.Label(header_frame, text=' vs ', fg='black', bg='#aca7a9')
+# Add our player tag labels
+p1_label = tk.Label(header_frame, text='Player 1 Tag', fg='white', bg='#002255', font=font_large)
+p2_label = tk.Label(header_frame, text='Player 2 Tag', fg='white', bg='#002255', font=font_large)
+
+vs_label = tk.Label(header_frame, text=' vs ', fg='black', bg='#aca7a9', font=font_large)
 
 # Entry fields for player tags
-p1_tag = tk.Entry(header_frame)
+p1_tag = tk.Entry(header_frame, font=font_large)
 p1_tag.insert(tk.END, 'p1')
-p2_tag = tk.Entry(header_frame)
+p2_tag = tk.Entry(header_frame, font=font_large)
 p2_tag.insert(tk.END, 'p2')
 
 
@@ -282,6 +285,7 @@ p1_char.trace('w', update_character_previews)
 # TODO add trace here and on p2
 
 p1_char_select = tk.OptionMenu(header_frame, p1_char, *tuple(p1_chars))
+p1_char_select.config(font=font_medium)
 
 p2_chars = list(p2_chars_dict.keys())
 
@@ -292,6 +296,7 @@ p2_char.trace('w', update_character_previews)
 
 
 p2_char_select = tk.OptionMenu(header_frame, p2_char, *tuple(p2_chars))
+p2_char_select.config(font=font_medium)
 
 
 
@@ -312,7 +317,7 @@ p2_games = tk.Spinbox(header_frame, from_=0, to=9, width=5,
                       font=Font(family='Helvetica', size=13, weight='bold'))
 
 # The big kahuna button
-update_button = tk.Button(header_frame, command=save_game_state, text='Update!')
+update_button = tk.Button(header_frame, command=save_game_state, text='Update!', font=font_large)
 
 
 
