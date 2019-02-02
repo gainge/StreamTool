@@ -3,12 +3,6 @@
 
 # Methods #
 
-
-
-
-
-
-
 '''
 ---------------------
 -  Main Code Start  -
@@ -126,6 +120,10 @@ ROOT_HEIGHT = 350
 
 OUT_FILE_PREFIX = os.path.join('output', 'main_out')
 IMG_PATH = os.path.join('res', 'img')
+
+# Create the output directory for when I run on a separate system
+if not os.path.exists(OUT_FILE_PREFIX):
+    os.makedirs(OUT_FILE_PREFIX)
 
 
 
