@@ -341,14 +341,15 @@ vs_label.grid(row=1, column=1)
 p1_tag.grid(row=1, column=0)
 p2_tag.grid(row=1, column=2)
 
-# p1_games.grid(row=2, column=0)
-p1_char_select.grid(row=2, column=0)
-# p2_games.grid(row=2, column=2)
-p2_char_select.grid(row=2, column=2)
+p1_games.grid(row=2, column=0)
+p2_games.grid(row=2, column=2)
+
+p1_char_select.grid(row=3, column=0)
+p2_char_select.grid(row=3, column=2)
 
 
-p1_char_label.grid(row=3, column=0)
-p2_char_label.grid(row=3, column=2)
+p1_char_label.grid(row=4, column=0)
+p2_char_label.grid(row=4, column=2)
 
 
 update_button.grid(row=3, column=1)
