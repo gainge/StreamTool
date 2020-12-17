@@ -50,13 +50,13 @@ def update_character_previews(a, b, c):
     photo = ImageTk.PhotoImage(load)
     p1_char_label = tk.Label(header_frame, image=photo)
     p1_char_label.image = photo
-    p1_char_label.grid(row=3, column=0)
+    p1_char_label.grid(row=4, column=0)
 
     load = Image.open(os.path.join(IMG_PATH, 'config_1', 'stock_icons', icons_dict[p2_char.get()]))
     photo = ImageTk.PhotoImage(load)
     p2_char_label = tk.Label(header_frame, image=photo)
     p2_char_label.image = photo
-    p2_char_label.grid(row=3, column=2)
+    p2_char_label.grid(row=4, column=4)
 
     # Force update
     # root.update()
@@ -143,12 +143,12 @@ geometry = "{}x{}+{}+{}".format(ROOT_WIDTH, ROOT_HEIGHT, 0, 0)
 root.geometry(geometry)
 
 main_frame = tk.Frame(root)
-main_frame.grid(row=0, column=1)
+main_frame.grid(row=0, column=3)
 # configure the grid so that our main frame is centered
 # root.grid_rowconfigure(0, weight=1)
 # root.grid_rowconfigure(2, weight=1)
 root.grid_columnconfigure(0, weight=1)
-root.grid_columnconfigure(2, weight=1)
+root.grid_columnconfigure(4, weight=1)
 
 
 # Let's make the banner!
@@ -333,26 +333,26 @@ bind_changed(input_widgets)
 
 # Grid everything up!
 p1_label.grid(row=0, column=0)
-p2_label.grid(row=0, column=2)
+p2_label.grid(row=0, column=4)
 
-vs_label.grid(row=1, column=1)
+vs_label.grid(row=1, column=2)
 
 
 p1_tag.grid(row=1, column=0)
-p2_tag.grid(row=1, column=2)
+p2_tag.grid(row=1, column=4)
 
-p1_games.grid(row=2, column=0)
-p2_games.grid(row=2, column=2)
+p1_games.grid(row=1, column=1)
+p2_games.grid(row=1, column=3)
 
 p1_char_select.grid(row=3, column=0)
-p2_char_select.grid(row=3, column=2)
+p2_char_select.grid(row=3, column=4)
 
 
 p1_char_label.grid(row=4, column=0)
-p2_char_label.grid(row=4, column=2)
+p2_char_label.grid(row=4, column=4)
 
 
-update_button.grid(row=3, column=1)
+update_button.grid(row=3, column=2)
 
 
 # Display the window
